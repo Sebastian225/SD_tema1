@@ -155,7 +155,7 @@ void mergeSort(vector<long long int> &v, long long int left, long long int right
 void quickSort(vector<long long int> &v, long long int left, long long int right){
     vector<long long int> lower, higher, equal;
     if(left < right){
-        long long pivot = left;
+        long long int pivot = left;
 
         for(long long int i = left; i < right; i++) {
             if (v[i] < v[pivot]) {
