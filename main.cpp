@@ -220,7 +220,7 @@ int main() {
             backup = numbers;
         }
         else{
-            cout<<"it takes too much!";
+            cout<<"dureaza prea mult!";
         }
 
         cout<<"COUNT SORT: ";
