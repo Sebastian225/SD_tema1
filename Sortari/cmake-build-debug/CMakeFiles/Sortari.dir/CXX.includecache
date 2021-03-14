@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/cpp facultate/Sortari/main.cpp
+iostream
+-
+fstream
+-
+cstdlib
+-
+ctime
+-
+vector
+-
+cmath
+-
+algorithm
+-
+chrono
+-
+
