@@ -182,13 +182,13 @@ void quickSort(vector<long long int> &v, long long int left, long long int right
     }
 }
 
-int N[] = {1000, 1000, 1000, 10000, 10000, 100000, 1000000, 1000000, 100000000, 100000000};
-int MAX[] = {100, 10000, 1000000, 100, 10000, 1000000, 100, 10000, 1000000, 100000000};
+int N[] = {1000, 10000, 10000, 100000, 1000000, 1000000};
+int MAX[] = {10000, 100, 1000000, 100, 1000000, 100000000};
 vector<long long int> numbers, backup;
 vector<int> frecv;
 
 int main() {
-    generateTests(10, N, MAX);
+    generateTests(6, N, MAX);
 
     //cout<<numbers.max_size();
     ifstream fin("E:\\cpp facultate\\Sortari\\teste.txt");
@@ -203,43 +203,50 @@ int main() {
         }
         backup = numbers;
 
+        chrono::duration<double> elapsed_seconds;
         cout<<"BUBBLE SORT: ";
-        auto start = chrono::system_clock::now();
-        bubbleSort(numbers, N_TEST);
-        auto end = chrono::system_clock::now();
-        chrono::duration<double> elapsed_seconds = end-start;
-        cout<<elapsed_seconds.count() << "s ";
-        if(is_sorted(numbers.begin(), numbers.end())){
-            cout<<"sorted\n";
+        if(N_TEST < 30000){
+            auto start = chrono::system_clock::now();
+            bubbleSort(numbers, N_TEST);
+            auto end = chrono::system_clock::now();
+            elapsed_seconds = end-start;
+            cout<<elapsed_seconds.count() << "s ";
+            if(is_sorted(numbers.begin(), numbers.end())){
+                cout<<"sorted\n";
+            }
+            else{
+                cout<<"not sorted\n";
+            }
+            backup = numbers;
         }
         else{
-            cout<<"not sorted\n";
+            cout<<"it takes too much!";
         }
-        backup = numbers;
 
         cout<<"COUNT SORT: ";
-        start = chrono::system_clock::now();
+
         if(MAX_TEST > frecv.max_size() or INT32_MAX<N_TEST){
             cout<<"can't sort!";
         }
         else {
+            auto start = chrono::system_clock::now();
             countSort(numbers, frecv, N_TEST, MAX_TEST);
+            auto end = chrono::system_clock::now();
+            elapsed_seconds = end-start;
+            cout<<elapsed_seconds.count() << "s ";
+            if(is_sorted(numbers.begin(), numbers.end())){
+                cout<<"sorted\n";
+            }
+            else{
+                cout<<"not sorted\n";
+            }
+            backup = numbers;
         }
-        end = chrono::system_clock::now();
-        elapsed_seconds = end-start;
-        cout<<elapsed_seconds.count() << "s ";
-        if(is_sorted(numbers.begin(), numbers.end())){
-            cout<<"sorted\n";
-        }
-        else{
-            cout<<"not sorted\n";
-        }
-        backup = numbers;
 
         cout<<"RADIX SORT (baza 1024): ";
-        start = chrono::system_clock::now();
+        auto start = chrono::system_clock::now();
         radixSort(numbers, 10);
-        end = chrono::system_clock::now();
+        auto end = chrono::system_clock::now();
         elapsed_seconds = end-start;
         cout<<elapsed_seconds.count() << "s ";
         if(is_sorted(numbers.begin(), numbers.end())){
